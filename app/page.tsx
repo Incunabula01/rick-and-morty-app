@@ -81,7 +81,7 @@ export default function Home() {
                       <ul className='space-y-3'>
                           {episodeList.map(episode => (
                             <li key={episode.id} onClick={() => handleEpisodeSelect(episode.id)}>
-                              <div className={`${selected === episode.id ? 'border-rmPink' : 'border-rmTeal'} bg-rmGreen rounded-md border-4 cursor-pointer p-2 hover:bg-rmTeal`}>
+                              <div className={`${selected === episode.id ? 'border-rmTeal bg-rmPink' : 'border-rmTeal'} bg-rmGreen rounded-md border-4 cursor-pointer p-2 hover:bg-rmTeal`}>
                                 <p className='font-semibold text-rmYellow'>{episode.name}</p>
                               </div>
 
@@ -107,22 +107,26 @@ export default function Home() {
                     </div>
                   }
                  
-                  <div className='grid grid-cols-5 grid-rows-4 space-x-2 space-y-2'>
+                  <div className='grid grid-cols-5 grid-rows-4 space-x-2 space-y-3'>
                     {characterList.map(char => (
-                      <div className='flex flex-col justify-center items-center rounded-3xl bg-rmYellow border-rmTeal border-4 overflow-hidden h-[200px] first:mt-2 first:mr-2' key={char.id}>
-                        <div className="w-full h-[150px] relative">
-                          <Image
-                            src={char.image}
-                            alt={char.name}
-                            className="absolute inset-[0px_0px_1rem_0px] w-full h-full object-cover object-center"
-                            layout="fill"
-                          />
+                      <div className='flex flex-col items-center first:mt-3 first:ml-3'>
+                        <div className='rounded-3xl border-rmYellow border-4 overflow-hidden w-full h-[200px] ' key={char.id}>
+                          <div className="w-full h-full relative">
+                            <Image
+                              src={char.image}
+                              alt={char.name}
+                              className="absolute inset-[0px_0px_1rem_0px] w-full h-full object-cover object-center"
+                              layout="fill"
+                            />
+                          </div>
+
+
                         </div>
                         <div className="p-2">
-                          <p className='font-semibold  text-rmTeal'>{char.name}</p>
+                          <p className='font-semibold  text-rmTeal leading-4'>{char.name}</p>
                         </div>
-
                       </div>
+                      
                     ))}
                   </div>
                 </>
