@@ -107,9 +107,9 @@ export default function Home() {
                     </div>
                   }
                  
-                  <div className='grid grid-cols-5 grid-rows-4 space-x-2 space-y-3'>
+                  <div className='grid grid-cols-5 grid-rows-4 space-x-2 space-y-2'>
                     {characterList.map(char => (
-                      <div className='flex flex-col items-center first:mt-3 first:ml-3'>
+                      <div className='flex flex-col items-center first:mt-2 first:ml-3'>
                         <div className='rounded-3xl border-rmYellow border-4 overflow-hidden w-full h-[200px] ' key={char.id}>
                           <div className="w-full h-full relative">
                             <Image
