@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import { getEpisodes } from './api/episodes';
-import { getAllCharacters, getCharacters } from './api/characters';
+import { getAllCharacters, getCharData, getCharacters } from './api/characters';
 import { useMemo, useState, useEffect, useRef } from 'react';
 import Loading from './components/loading';
 import {
@@ -9,7 +9,8 @@ import {
   Character,
   EpisodeResult,
   CharResult,
-  EpisodeMetadata
+  EpisodeMetadata,
+  CharData
 } from './utils/types';
 
 
@@ -86,7 +87,7 @@ export default function Home() {
         console.log('fetchData!');
 
         setLoading(true);
-        const allCharacters: CharData | null = await getCharacters({ pageNum: page.toString() });
+        const allCharacters: CharData | null = await getCharData({ pageNum: page.toString() });
         if (allCharacters && !allCharacters?.data.hasOwnProperty('error')) {
           const newCharacters = allCharacters.data.results;
           setCharacterList((prevCharacters) => [...prevCharacters, ...newCharacters]);

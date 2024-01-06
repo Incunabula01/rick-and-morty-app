@@ -34,7 +34,7 @@ export interface Character {
 
 export interface CharData {
     info: CharInfo
-    results: CharResult[]
+    data: CharResults
 }
 
 export interface CharInfo {
@@ -42,6 +42,11 @@ export interface CharInfo {
     pages: number
     next: string
     prev: any
+}
+
+export interface CharResults {
+    info: CharInfo;
+    results: CharResult[]
 }
 
 export interface CharResult {

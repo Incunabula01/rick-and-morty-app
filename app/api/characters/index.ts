@@ -1,7 +1,7 @@
-import { Character } from "@/app/utils/types";
-import { ResponseError } from '@/app/utils/errors';
+import { CharData, Character } from "@/app/utils/types";
 
-export const getAllCharacters = async (): Promise<Character | null> => {
+
+export const getAllCharacters = async (): Promise<CharData | null> => {
     try { 
         const response = await fetch('/api/characters', {
             method: 'GET',
@@ -13,33 +13,46 @@ export const getAllCharacters = async (): Promise<Character | null> => {
         const data = await response.json();
         return data;
 
-    } catch (error: ResponseError) {
-        console.error('Get All Characters Error', error.message);
+    } catch (error) {
+        console.error('Get All Characters Error', error);
     }
     return null;
 }
 
-type GetCharactersProps = {
-    pageNum?: string;
-    chars?: string[];
+
+export const getCharData = async ({pageNum}: {pageNum: string}): Promise<CharData  | null> => {
+    try {
+        const response = await fetch('/api/characters', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ pageNum: pageNum })
+        });
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Get Characters Error', error);
+    }
+    return null;
 }
 
-export const getCharacters = async ({chars, pageNum}: GetCharactersProps): Promise<Character | null> => {
+export const getCharacters = async ({chars}: {chars: string[]}): Promise<Character | null> => {
     try {
-        const reqBody = chars ? { chars: chars } : { pageNum: pageNum };
         
         const response = await fetch('/api/characters', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(reqBody)
+            body: JSON.stringify({ chars: chars })
         });
         const data = await response.json();
         return data;
 
-    } catch (error: ResponseError) {
-        console.error('Get Characters Error', error.message);
+    } catch (error) {
+        console.error('Get Characters Error', error);
     }
     return null;
 }
