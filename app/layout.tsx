@@ -26,10 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${sourceSans.variable} ${creepster.variable} bg-rmLightBlue`}>
-       
-          {children}
-        
+      <body className={`${sourceSans.variable} ${creepster.variable} bg-rmLightBlue overflow-y-hidden`}>
+
+        {children}
+
       </body>
     </html>
   )

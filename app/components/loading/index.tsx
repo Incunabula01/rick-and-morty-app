@@ -3,10 +3,12 @@ import React from 'react';
 
 export default function Loading(props: PageProps) {
     return (
-        <div className="relative">
-            <div className="absolute inset-0 flex items-center justify-center bg-rmGreen bg-opacity-50 z-50" >
-                <div className="animate-spin rounded-full h-16 w-16 border-t-5 border-rmPink" > </div>
-            </div>
-        </div>  
+        <div className="absolute inset-0 flex items-center justify-center bg-rmGreen bg-opacity-50 z-50 rounded-[2rem]" >
+            <img
+                src="https://rickandmortyapi.com/api/character/avatar/66.jpeg"
+                alt="Rick and Morty Loader"
+                className="w-40 animate-spin rounded-full"
+            />
+        </div>
     );
 }
