@@ -9,9 +9,11 @@ export async function GET(): Promise<NextResponse>  {
             return NextResponse.json({ message: "No Data available" }, { status: 404 });
         }
         return NextResponse.json({ message: "Query Successful!", data }, { status: 200 });
-    } catch (error: ResponseError) {
-        console.error('Error:', error);
-        return NextResponse.json({ message: `Unexpected error occured! ${error.message}` }, { status: 500 });
+    } catch (error) {
+        if(error instanceof ResponseError){
+            return NextResponse.json({ message: `${error.message}` }, { status: 500 });
+        }
+        return NextResponse.json({ message: `Unexpected error occured! ${error}`}, { status: 500 });
     }
 }
 

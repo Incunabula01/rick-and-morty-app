@@ -1,3 +1,4 @@
+import { ResponseError } from '@/app/utils/errors';
 import { NextResponse } from 'next/server';
 
 export async function GET(): Promise<NextResponse> {
@@ -10,8 +11,10 @@ export async function GET(): Promise<NextResponse> {
         }
         return NextResponse.json({ message: "Query Successful!", data }, { status: 200 });
     } catch (error) {
-        console.error('Error:', error);
-        return NextResponse.json({ message: `Unexpected error occured! ${error}` }, { status: 500 });
+        if(error instanceof ResponseError){
+            return NextResponse.json({ message: `${error.message}` }, { status: 500 });
+        }
+        return NextResponse.json({ message: `Unexpected error occured! ${error}`}, { status: 500 });
     }
 };
 
@@ -30,8 +33,10 @@ export async function POST(req: Request): Promise<NextResponse> {
         }
         return NextResponse.json({ message: "Query Successful!", data }, { status: 200 });
         
-    } catch (error) {
-        console.error('Error:', error);
-        return NextResponse.json({ message: `Unexpected error occured! ${error}` }, { status: 500 });
+     } catch (error) {
+        if(error instanceof ResponseError){
+            return NextResponse.json({ message: `${error.message}` }, { status: 500 });
+        }
+        return NextResponse.json({ message: `Unexpected error occured! ${error}`}, { status: 500 });
     }
 };
