@@ -113,7 +113,6 @@ export default function Home() {
   useMemo(async () => {
     if (!episodeList.length) {
       setLoading(true);
-      console.log('memo!!');
 
       const episodes: Episode | null = await getEpisodes();
       if (episodes) {
@@ -123,7 +122,6 @@ export default function Home() {
       if (allCharacters) {
         setCharacterList(allCharacters.data.results);
         setLoading(false);
-        console.log('allCharacters loading', loading);
       }
 
     }
@@ -135,14 +133,12 @@ export default function Home() {
     const fetchData = async () => {
 
       if (page > 1) {
-        console.log('fetchData!');
 
         setLoading(true);
         const allCharacters: CharData | null = await getCharData({ pageNum: page.toString() });
         if (allCharacters && !allCharacters?.data.hasOwnProperty('error')) {
           const newCharacters = allCharacters.data.results;
           setCharacterList((prevCharacters) => [...prevCharacters, ...newCharacters]);
-          console.log('new characters set, page ==>', page);
 
           setLoading(false);
         } else {
@@ -169,20 +165,14 @@ export default function Home() {
           return;
         }
 
-        console.log('isLoading?', loading);
-        console.log('fetch data trigger', scrollHeight - scrollTop !== clientHeight, loading);
-
         setPage(page + 1);
-        console.log('set page ===>', page);
       }
 
     };
 
     if (outerElement) {
       outerElement.addEventListener('scroll', handleScroll);
-      console.log('scroller added!');
       return () => {
-        console.log('scroller removed!');
         outerElement.removeEventListener('scroll', handleScroll);
       }
     }
@@ -206,7 +196,7 @@ export default function Home() {
             alt="Rick and Morty Loader"
             className="w-16 md:w-20 rounded-full md-2 hidden md:block"
           />
-          <div className='cursor-pointer'>
+          <div>
             <h1 className='text-2xl md:text-6xl text-center text-rmGreen '>Rick and Morty Characters</h1>
           </div>
 
