@@ -28,12 +28,13 @@ export interface EpisodeResult {
 
 
 export interface Character {
-    data: CharData
+    message: string
+    data: CharResult[]
 }
 
 export interface CharData {
     info: CharInfo
-    results: CharResult[]
+    data: CharResults
 }
 
 export interface CharInfo {
@@ -43,6 +44,11 @@ export interface CharInfo {
     prev: any
 }
 
+export interface CharResults {
+    info: CharInfo;
+    results: CharResult[]
+}
+
 export interface CharResult {
     id: number
     name: string
@@ -50,7 +56,7 @@ export interface CharResult {
     species: string
     type: string
     gender: string
-    origin: Origin
+    origin: CharOrigin
     location: Location
     image: string
     episode: string[]
@@ -72,4 +78,9 @@ export interface CharOrigin {
 export interface CharLocation {
     name: string
     url: string
+}
+
+export interface EpisodeMetadata {
+  name: string
+  charCount: number
 }
