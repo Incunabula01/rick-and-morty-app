@@ -179,6 +179,9 @@ export default function Home() {
 
   }, [page, disableInfiniteScroll]);
 
+  const handleRefresh = () => {
+    window.location.reload();
+  }
 
   return (
     <>
@@ -191,12 +194,15 @@ export default function Home() {
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
-          <img
-            src="https://rickandmortyapi.com/api/character/avatar/66.jpeg"
-            alt="Rick and Morty Loader"
-            className="w-16 md:w-20 rounded-full md-2 hidden md:block"
-          />
-          <div>
+          <div className="cursor-pointer" onClick={() => handleRefresh()}>
+            <img
+              src="https://rickandmortyapi.com/api/character/avatar/66.jpeg"
+              alt="Rick and Morty Loader"
+              className="w-16 md:w-20 rounded-full md-2 hidden md:block"
+            />
+          </div>
+
+          <div className="cursor-pointer" onClick={() => handleRefresh()}>
             <h1 className='text-2xl md:text-6xl text-center text-rmGreen '>Rick and Morty Characters</h1>
           </div>
 
